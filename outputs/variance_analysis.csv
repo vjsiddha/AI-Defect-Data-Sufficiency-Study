@@ -1,0 +1,13 @@
+real_count,metric,std_real_only,std_plus_synth,verdict
+2 real,accuracy,0.009033714629099155,0.024739846402110095,synthetic data INCREASED variance (less consistent)
+2 real,escape_rate,0.08523252313524458,0.054947292926949554,synthetic data REDUCED variance (more consistent)
+2 real,frr,0.021977829738170234,0.024865075909797658,no meaningful change in consistency
+5 real,accuracy,0.013168788858509346,0.034250766414782606,synthetic data INCREASED variance (less consistent)
+5 real,escape_rate,0.1360759604044741,0.0722083582419653,synthetic data REDUCED variance (more consistent)
+5 real,frr,0.042121229801609546,0.038799123701444595,no meaningful change in consistency
+10 real,accuracy,0.015317408396984125,0.020698840547238372,synthetic data INCREASED variance (less consistent)
+10 real,escape_rate,0.10669663537337998,0.05617922213772633,synthetic data REDUCED variance (more consistent)
+10 real,frr,0.0340070874965793,0.030423724295358712,no meaningful change in consistency
+all real (18),accuracy,0.026337577717018702,0.0465038923102142,synthetic data INCREASED variance (less consistent)
+all real (18),escape_rate,0.0803063509319157,0.05239661248592317,synthetic data REDUCED variance (more consistent)
+all real (18),frr,0.03315230007103579,0.08003028801647535,synthetic data INCREASED variance (less consistent)

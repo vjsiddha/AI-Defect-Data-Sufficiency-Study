@@ -1,0 +1,40 @@
+# Core ML / data
+torch>=2.1.0
+torchvision>=0.16.0
+numpy>=1.24.0
+pandas>=2.0.0
+scikit-learn>=1.3.0
+
+# Image handling
+pillow>=10.0.0
+
+# Plotting
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Dataset loading (Notebook 1 — MVTec AD download)
+datasets>=2.16.0
+huggingface_hub>=0.20.0
+
+# Vision-Language Model (Notebook 2 — Qwen2-VL)
+transformers>=4.40.0
+accelerate>=0.27.0
+qwen-vl-utils>=0.0.2
+sentencepiece>=0.1.99
+
+# Diffusion-based image generation (Notebook 2 — Stable Diffusion inpainting)
+diffusers>=0.27.0
+
+# --------------------------------------------------------------------------
+# Notes:
+# - All three notebooks were developed and run on Google Colab with a free-tier
+#   T4 GPU runtime. Version pins above are minimums known to work with the code
+#   in this repository as of the study's completion; newer compatible versions
+#   should also work but were not explicitly tested.
+# - PyTorch should be installed with CUDA support if running on a GPU machine
+#   outside Colab. See https://pytorch.org/get-started/locally/ for the correct
+#   install command for your specific CUDA version.
+# - Qwen2-VL and Stable Diffusion model weights are downloaded automatically
+#   on first run by Notebook 2 (several GB) — not included in this file, no
+#   separate installation step is required beyond the libraries above.
+# --------------------------------------------------------------------------
