@@ -16,8 +16,6 @@ Across nine experimental conditions, each trained five times (45 models total), 
 
 ## The Manufacturing Problem
 
-[FIGURE PLACEHOLDER: diagram illustrating the "data paradox" — a well-run production line producing very few defective parts, with a sparse defect timeline]
-
 A core contradiction sits underneath every AI-assisted quality inspection rollout: the inspection system needs real examples of defects to learn what to catch, but a well-controlled, low-defect-rate production line — which is the entire goal of quality engineering — generates very few of them. This is especially acute during a new product launch, when a line has no defect history at all, but inspection coverage is most needed.
 
 The proposed industry fix is synthetic defect generation: using generative AI to manufacture artificial defect images that can supplement, or in theory replace, scarce real data. This is an active, rapidly developing area — most recently formalized in academic work such as the SynSur pipeline (Kühn et al., 2026), which combines a vision-language model with diffusion-based image generation to produce synthetic industrial surface defects.
@@ -69,11 +67,6 @@ This study deliberately does not ask "does synthetic data improve accuracy." It 
 
 ## Methodology Overview
 
-[FIGURE PLACEHOLDER: three-phase study workflow diagram — Phase 1 (Baseline: real data → classifier → fixed test set) → Phase 2 (VLM description → diffusion inpainting → synthetic defects) → Phase 3 (nine mixed-data conditions × five seeds → evaluation against the fixed test set from Phase 1)]
-*Figure: High-level study workflow. Each phase builds on the output of the previous one — the test set fixed in Phase 1 is reused unchanged through Phase 3, and the synthetic images generated in Phase 2 are the sole independent variable introduced in Phase 3.*
-
-[FIGURE PLACEHOLDER: end-to-end pipeline diagram — real defect images → VLM description → diffusion inpainting → synthetic defect images → mixed training sets → classifier training → evaluation against fixed real test set]
-
 The study used the MVTec AD `metal_nut` category as its physical part, focusing specifically on **scratch defects** as the target defect type for synthetic generation. All experiments were evaluated against a single, fixed, held-out test set of real images — never synthetic — established once at the start of the study and reused identically across every subsequent experiment, so that every comparison in this study is measured against the same real-world ground truth.
 
 ### Three Study Phases
@@ -112,10 +105,6 @@ A methodological note on model stability: an initial version of this study train
 ---
 
 ## Results
-
-[FIGURE PLACEHOLDER: uncertainty plots — mean ± standard deviation for accuracy, escape rate, and false rejection rate, real-only vs. real+synthetic, across all four real-data levels]
-
-[TABLE PLACEHOLDER: full aggregated results table — mean ± std for accuracy, escape rate, false rejection rate, and collapse count, all nine conditions]
 
 The pairwise comparison between matched real-only and real-plus-synthetic conditions, at each real-data level, showed a consistent pattern. Throughout this study, a change is labeled **improved** or **worsened** only if it exceeds roughly half the average standard deviation observed between the two conditions being compared (with a minimum threshold of 2 percentage points); smaller changes are labeled **negligible**, since they fall within the range of normal run-to-run variation already observed across the five seeds and should not be over-interpreted as a real effect.
 
@@ -223,18 +212,6 @@ This study is best understood as an applied extension of existing synthetic-defe
 - **Introducing repeated, multi-seed evaluation to a question usually answered with a single training run.** Running every condition five times surfaced a training-stability problem (Section: Experimental Design) that a single-run evaluation would have hidden entirely, and made it possible to report run-to-run variance as a finding in its own right, not just an average result.
 - **Demonstrating that synthetic augmentation changes inspection behavior rather than replacing real defect data.** The consistent escape-rate/false-rejection-rate tradeoff observed across four independent real-data levels is a more specific and more operationally useful finding than a simple "works" or "doesn't work" verdict.
 - **Translating the result into a practical engineering decision framework** (introduced earlier, following the Practical Manufacturing Implications section), rather than leaving the reader with a set of metrics and no guidance on when, if ever, this technique is appropriate to use.
-
----
-
-## Repository Structure
-
-[PLACEHOLDER — to be finalized in a later deliverable]
-
----
-
-## Reproducing the Study
-
-[PLACEHOLDER — to be finalized in a later deliverable]
 
 ---
 
