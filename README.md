@@ -117,9 +117,9 @@ No condition beat training on real data alone for overall accuracy. But the dire
 
 > **In plain terms:** synthetic data made the inspector more cautious. It didn't make it smarter.
 
-What stood out to me wasn't any single number, it was that the *same* tradeoff showed up whether there were only 2 real examples to work with or the full set of 18. I went in expecting synthetic data to matter most when real data was scarcest, and to fade out as more real data became available. That's not what happened. The pattern held at every level I tested, including the condition with the most real data already in hand which suggests this isn't really a "filling a data gap" effect at all. It looks more like synthetic data is teaching the model a specific, consistent bias toward caution, independent of how much real signal it already has.    
+What stood out to me wasn't any single number; it was that the *same* tradeoff showed up whether there were only 2 real examples to work with or the full set of 18. I went in expecting synthetic data to matter most when real data was scarcest, and to fade out as more real data became available. That's not what happened. The pattern held at every level I tested, including the condition with the most real data already in hand, which suggests this isn't really a "filling a data gap" effect at all. It looks more like synthetic data is teaching the model a specific, consistent bias toward caution, independent of how much real signal it already has.    
 
-The one thing that stayed genuinely consistent across every single condition was the *direction* of the false-rejection increase, it never once reversed. That consistency is what makes me trust the finding. A result that only shows up at one data level could easily be noise; a result that shows up the same way four times, at four very different amounts of real data, is a real effect.
+The one thing that stayed genuinely consistent across every single condition was the *direction* of the false-rejection increase; it never once reversed. That consistency is what makes me trust the finding. A result that only shows up at one data level could easily be noise; a result that shows up the same way four times, at four very different amounts of real data, is a real effect.
 
 ---
 
@@ -152,24 +152,24 @@ The one thing that stayed genuinely consistent across every single condition was
 
 The reasoning behind each row follows directly from the tradeoff above, not from a general impression of the technology:
 
-**A new launch with zero real defects** is the scenario synthetic data is actually marketed for, and it's a defensible use case *as a bridge* — but only because the cost of extra false rejections (a part gets re-inspected, maybe scrapped) is usually tolerable during a low-volume ramp-up, while the cost of an escape during launch (when you have the least track record to fall back on) is high. It's a reasonable trade to accept temporarily, not a reason to stop collecting real defect data.
+**A new launch with zero real defects** is the scenario synthetic data is actually marketed for, and it's a defensible use case *as a bridge* but only because the cost of extra false rejections (a part gets re-inspected, maybe scrapped) is usually tolerable during a low-volume ramp-up, while the cost of an escape during launch (when you have the least track record to fall back on) is high. It's a reasonable trade to accept temporarily, not a reason to stop collecting real defect data.
 
-**Early ramp-up with re-inspection tolerance** is the best-fit scenario in this study, for the same reason — you're deliberately choosing to absorb more false alarms in exchange for not missing real defects while your real-data collection is still catching up.
+**Early ramp-up with re-inspection tolerance** is the best-fit scenario in this study, for the same reason, you're deliberately choosing to absorb more false alarms in exchange for not missing real defects while your real-data collection is still catching up.
 
-**A mature line** already has the real defect history that synthetic data is meant to substitute for. Adding synthetic data here mostly just adds false rejections without a meaningful escape-rate benefit, because the thing synthetic data is good at — nudging the model toward caution — has diminishing value once the model already has enough real examples to be confident.
+**A mature line** already has the real defect history that synthetic data is meant to substitute for. Adding synthetic data here mostly just adds false rejections without a meaningful escape-rate benefit, because the thing synthetic data is good at(nudging the model toward caution) has diminishing value once the model already has enough real examples to be confident.
 
-**Safety-critical programs** can't accept an unverified bias toward caution as a substitute for real-world validation. The escape-rate improvement here was real but modest, and it was measured across five seeds, not five hundred — solid evidence for a directional pattern, not the kind of statistical confidence a safety case needs.
+**Safety-critical programs** can't accept an unverified bias toward caution as a substitute for real-world validation. The escape-rate improvement here was real but modest, and it was measured across five seeds, not five hundred, solid evidence for a directional pattern, not the kind of statistical confidence a safety case needs.
 
-**High scrap-cost sensitivity** is the scenario this study's findings argue against directly. False rejection rate got worse in every single condition tested. If scrap cost is your dominant concern, this technique pushes in exactly the wrong direction.
+**High scrap-cost sensitivity** is the scenario this study's findings argue against directly. The false rejection rate got worse in every single condition tested. If scrap cost is your dominant concern, this technique pushes in exactly the wrong direction.
 
 ---
 ## Limitations, Briefly
 
-**Scratches only, one part.** Everything here applies to one defect type on one fastener. A different defect — something with more 3D structure, like a dent or a crack — might respond completely differently to synthetic generation. Extending this to the other defect types in the same dataset would be the natural next step before generalizing the finding any further.
+**Scratches only, one part.** Everything here applies to one defect type on one fastener. A different defect, something with more 3D structure, like a dent or a crack, might respond completely differently to synthetic generation. Extending this to the other defect types in the same dataset would be the natural next step before generalizing the finding any further.
 
-**Five seeds, not five hundred.** Five independent runs per condition is enough to see a consistent direction, which is what this study is built around — but it isn't enough for the kind of statistical confidence a safety-critical decision would need. More seeds would tighten the error bars; they probably wouldn't change the direction of the result, but I can't claim that with certainty from this data alone.
+**Five seeds, not five hundred.** Five independent runs per condition are enough to see a consistent direction, which is what this study is built around, but it isn't enough for the kind of statistical confidence a safety-critical decision would need. More seeds would tighten the error bars; they probably wouldn't change the direction of the result, but I can't claim that with certainty from this data alone.
 
-**Simplified defect placement.** Synthetic defects were placed using randomized mask shapes, not the precise, pixel-level ground-truth defect masks the reference methodology (SynSur) uses. A more careful placement approach might change how convincing the synthetic defects are, which could shift the magnitude of the effect — worth testing before drawing conclusions for a defect type with more spatial complexity than a scratch.
+**Simplified defect placement.** Synthetic defects were placed using randomized mask shapes, not the precise, pixel-level ground-truth defect masks that the reference methodology (SynSur) uses. A more careful placement approach might change how convincing the synthetic defects are, which could shift the magnitude of the effect — worth testing before drawing conclusions for a defect type with more spatial complexity than a scratch.
 
 Full discussion in `report/Research_Report.md`.
 
@@ -179,9 +179,9 @@ Full discussion in `report/Research_Report.md`.
 
 **Accuracy alone is a poor measure of inspection quality.** I knew this going in, in the abstract. Actually watching a condition post a *better* accuracy score while quietly making more dangerous escapes — or the reverse — made it concrete in a way I didn't fully appreciate until I saw it in my own numbers.
 
-**Multi-seed evaluation found something a single run would have missed completely.** The training collapse wasn't a hypothetical risk I was guarding against — it actually happened, in close to half of all runs in an earlier version of this study. If I'd evaluated each condition once, I would have published a confident, wrong conclusion, and had no way of knowing it was wrong.
+**Multi-seed evaluation found something a single run would have missed completely.** The training collapse wasn't a hypothetical risk I was guarding against — it actually happened, in close to half of all runs in an earlier version of this study. If I'd evaluated each condition once, I would have published a confident, wrong conclusion and had no way of knowing it was wrong.
 
-**Synthetic data changes behavior more than it changes capability.** Going in, I expected a "does it help or not" answer. What I found instead was more specific and, I think, more useful: the model didn't get better at telling defective parts from good ones — it got more willing to call something defective. That's a real, usable finding, but it's a different finding than the one I set out looking for.
+**Synthetic data changes behavior more than it changes capability.** Going in, I expected a "does it help or not" answer. What I found instead was more specific and, I think, more useful: the model didn't get better at telling defective parts from good ones, it got more willing to call something defective. That's a real, usable finding, but it's a different finding than the one I set out looking for.
 
 **Real defect data didn't become optional at any point in this study.** Even at the highest real-data level I tested, synthetic data still didn't outperform real data alone. I went in open to the idea that synthetic data might eventually substitute for real data once enough real examples were already in place. It didn't — not at any level I tried.
 
